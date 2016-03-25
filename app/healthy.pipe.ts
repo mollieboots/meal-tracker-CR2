@@ -8,12 +8,19 @@ import { Meal } from './meal.model';
 
 export class HealthyPipe implements PipeTransform {
   trasform(input: Meal[], args) {
-    if(args[2] > 300) {
+    var desiredState = args[0]
+    if(desiredState === "all") {
       return input;
-    } else {
+    } else if (desiredState === "healthy") {
       return input.filter((meal) => {
         return meal.calories <= 300;
       });
+    } else if (desiredState === "notHealthy") {
+      return input.filter((meal) => {
+        return meal.calories > 300;
+      });
+    } else {
+      return input;
     }
   }
 }

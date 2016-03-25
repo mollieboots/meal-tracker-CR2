@@ -14,10 +14,10 @@ import { HealthyPipe } from './healthy.pipe';
   template: `
     <div class="row">
       <div class="col-md-8">
-        <select (change)="onChange($event.target.value)">
-          <option value="all">Show All</option>
+        <select (change)="onChange($event.target.value)" class="filter">
+          <option value="all" selected="selected">Show All</option>
           <option value="healthy">Show Healthy</option>
-          <option value="notHealthy" selected="selected">Show Not Healthy</option>
+          <option value="notHealthy">Show Unhealthy</option>
         </select>
         <meal-display *ngFor="#currentMeal of mealList"
         (click)="mealClicked(currentMeal)"
@@ -27,7 +27,7 @@ import { HealthyPipe } from './healthy.pipe';
         <edit-meal *ngIf="selectedMeal" [meal]="selectedMeal"></edit-meal>
       </div>
       <div class="col-md-4">
-        <new-meal onSubmitNewMeal="createMeal($event)"></new-meal>
+        <new-meal (onSubmitNewMeal)="createMeal($event)"></new-meal>
       </div>
     </div>
   `
@@ -37,17 +37,22 @@ export class MealListComponent {
   public mealList: Meal[];
   public onMealSelect: EventEmitter<Meal>;
   public selectedMeal: Meal;
+  public filterHeath: string = "all";
   constructor() {
     this.onMealSelect = new EventEmitter();
   }
-  createMeal(values) {
-    var newMeal = new Meal(values[0], values[1], values[2]);
-    this.mealList.push(newMeal);
+  createMeal(newMeal: Meal): void {
+    this.mealList.push(
+      new Meal(newMeal.name, newMeal.details, newMeal.calories)
+    );
     console.log(newMeal);
   }
   mealClicked(clickedMeal: Meal):void {
     console.log('child', clickedMeal);
     this.selectedMeal = clickedMeal;
     this.onMealSelect.emit(clickedMeal);
+  }
+  onChange(filterOption) {
+    this.filterHealth = filterOption;
   }
 }
