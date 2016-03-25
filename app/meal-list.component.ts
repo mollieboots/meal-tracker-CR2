@@ -54,6 +54,6 @@ export class MealListComponent {
   }
   onChange(filterOption) {
     this.filterHealth = filterOption;
-    console.log(filterHealth);
+    console.log(this.filterHealth);
   }
 }
