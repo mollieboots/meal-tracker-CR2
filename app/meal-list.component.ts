@@ -37,7 +37,7 @@ export class MealListComponent {
   public mealList: Meal[];
   public onMealSelect: EventEmitter<Meal>;
   public selectedMeal: Meal;
-  public filterHeath: string = "all";
+  public filterHealth: string = "all";
   constructor() {
     this.onMealSelect = new EventEmitter();
   }
@@ -54,5 +54,6 @@ export class MealListComponent {
   }
   onChange(filterOption) {
     this.filterHealth = filterOption;
+    console.log(filterHealth);
   }
 }

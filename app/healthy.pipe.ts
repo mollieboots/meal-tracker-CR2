@@ -8,7 +8,7 @@ import { Meal } from './meal.model';
 
 export class HealthyPipe implements PipeTransform {
   trasform(input: Meal[], args) {
-    var desiredState = args[0]
+    var desiredState = args[2]
     if(desiredState === "all") {
       return input;
     } else if (desiredState === "healthy") {
