@@ -11,7 +11,7 @@ import { MealListComponent } from './meal-list.component';
       <h1>Meal Tracker</h1>
     </div>
   </div>
-  <div clss="container">
+  <div class="col-md-8">
     <meal-list [mealList]="meals"></meal-list>
   </div>
   `
