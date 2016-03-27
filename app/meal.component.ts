@@ -7,9 +7,7 @@ import { Meal } from './meal.model';
   outputs: ['onMealSelect'],
   template: `
     <div (click)="mealClicked(meal)">
-      <h4>{{ meal.name }}</h4>
-      <h5>{{ meal.details }}</h5>
-      <p>{{ meal.calories }}</p>
+      <h4 class="mealName">{{ meal.name }}</h4>
     </div>
   `
 })

@@ -3,6 +3,7 @@ import { Meal } from './meal.model';
 
 @Pipe({
   name: "healthy",
+  pure: false
 })
 
 export class HealthyPipe implements PipeTransform {
