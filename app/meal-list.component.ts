@@ -4,13 +4,14 @@ import { MealComponent } from './meal.component';
 import { EditMealComponent } from './edit-meal.component';
 import { NewMealComponent } from './new-meal.component';
 import { HealthyPipe } from './healthy.pipe';
+import { MealDetailComponent } from './meal-details.component';
 
 @Component({
   selector: 'meal-list',
   inputs: ['mealList'],
   outputs: ['onMealSelect'],
   pipes: [HealthyPipe],
-  directives: [MealComponent, EditMealComponent, NewMealComponent],
+  directives: [MealComponent, EditMealComponent, NewMealComponent, MealDetailComponent],
   template: `
     <div class="row">
       <div class="col-md-8">
@@ -24,6 +25,9 @@ import { HealthyPipe } from './healthy.pipe';
         (click)="mealClicked(currentMeal)"
         [class.selected]="currentMeal === selectedMeal"
         [meal]="currentMeal">
+
+        <meal-details *ngIf="selectedMeal" [meal]="selectedMeal" [class.hidden]="!selectedMeal"></meal-details>
+
         </meal-display>
 
         <edit-meal *ngIf="selectedMeal" [meal]="selectedMeal"></edit-meal>
