@@ -7,7 +7,7 @@ import { MealComponent } from './meal.component';
   inputs: ['meal'],
   template: `
     <div class="mealDetails">
-      <h4>Details:</h4>
+      <h4>{{ meal.name }} Details:</h4>
       <h5>{{ meal.details }}</h5>
       <h5>{{ meal.calories }}</h5>
     </div>

@@ -14,26 +14,29 @@ import { MealDetailComponent } from './meal-details.component';
   directives: [MealComponent, EditMealComponent, NewMealComponent, MealDetailComponent],
   template: `
     <div class="row">
-      <div class="col-md-8">
-        <select (change)="onChange($event.target.value)" class="filter">
-          <option value="all" selected="selected">Show All</option>
-          <option value="healthy">Show Healthy</option>
-          <option value="notHealthy">Show Unhealthy</option>
-        </select>
+      <div class="col-md-9">
+        <div class="col-sm-7">
+          <select (change)="onChange($event.target.value)" class="filter">
+            <option value="all" selected="selected">Show All</option>
+            <option value="healthy">Show Healthy</option>
+            <option value="notHealthy">Show Unhealthy</option>
+          </select>
 
-        <meal-display *ngFor="#currentMeal of mealList | healthy:filterHealthy"
-        (click)="mealClicked(currentMeal)"
-        [class.selected]="currentMeal === selectedMeal"
-        [meal]="currentMeal">
-
+          <meal-display *ngFor="#currentMeal of mealList | healthy:filterHealthy"
+          (click)="mealClicked(currentMeal)"
+          [class.selected]="currentMeal === selectedMeal"
+          [meal]="currentMeal">
+          </meal-display>
+        </div>
+        <div class="col-sm-5">
         <meal-details *ngIf="selectedMeal" [meal]="selectedMeal" [class.hidden]="!selectedMeal"></meal-details>
 
-        </meal-display>
-
+        <hr>
         <edit-meal *ngIf="selectedMeal" [meal]="selectedMeal"></edit-meal>
+        </div>
       </div>
 
-      <div class="col-md-4">
+      <div class="col-md-3">
         <new-meal (onSubmitNewMeal)="createMeal($event)"></new-meal>
       </div>
     </div>

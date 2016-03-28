@@ -13,6 +13,7 @@ import { EditMealComponent } from './edit-meal.component';
       <h1>Meal Tracker</h1>
     </div>
   </div>
+  <div class="col-md-2"></div>
   <div class="col-md-8">
     <meal-list [mealList]="meals"></meal-list>
   </div>
